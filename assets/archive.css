@@ -558,6 +558,46 @@ figure.plate q { font-style: italic; }
 }
 
 /* ==========================================================================
+   Moniker: a name the papers gave him
+   ========================================================================== */
+
+.moniker {
+  margin: 2.25rem 0;
+  padding: clamp(1.4rem, 3vw, 2.25rem) clamp(1.25rem, 3vw, 2.5rem);
+  background: var(--mount);
+  color: #b9bdc0;
+  max-width: 46rem;
+}
+.moniker blockquote { margin: 0; }
+.moniker blockquote p {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .005em;
+  line-height: .95;
+  font-size: clamp(1.85rem, 5.2vw, 3.35rem);
+  color: var(--paper);
+}
+.moniker__rule {
+  width: 3.25rem;
+  height: 3px;
+  background: var(--vermilion);
+  margin: 1.05rem 0 1.15rem;
+}
+.moniker figcaption p { margin: 0 0 .85em; font-size: .9375rem; line-height: 1.6; }
+.moniker figcaption p:last-child { margin-bottom: 0; }
+.moniker .names {
+  font-family: var(--f-data);
+  font-size: .8125rem;
+  line-height: 1.85;
+  color: var(--pewter-lt);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.moniker a { color: #d8b3a8; border-bottom-color: rgba(216,179,168,.4); }
+
+/* ==========================================================================
    Colophon
    ========================================================================== */
 
@@ -575,7 +615,27 @@ figure.plate q { font-style: italic; }
   grid-template-columns: var(--rail) minmax(0, 1fr);
   gap: 0 2rem;
 }
-.colophon__body { max-width: var(--measure); }
+.colophon__body { max-width: 60rem; }
+.colophon__cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 0 3.25rem;
+  align-items: start;
+}
+.colophon__cols > * { min-width: 0; }
+.colophon__credit {
+  margin: 2.25rem 0 0;
+  padding-top: 1.35rem;
+  border-top: 1px solid rgba(255, 255, 255, .13);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 2rem;
+  justify-content: space-between;
+  align-items: baseline;
+}
+@media (max-width: 60rem) {
+  .colophon__cols { grid-template-columns: 1fr; gap: 0; }
+}
 .colophon h2 {
   font-family: var(--f-display);
   font-weight: 600;
