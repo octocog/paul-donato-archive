@@ -615,7 +615,7 @@ figure.plate q { font-style: italic; }
   grid-template-columns: var(--rail) minmax(0, 1fr);
   gap: 0 2rem;
 }
-.colophon__body { max-width: 60rem; }
+.colophon__body { grid-column: 2; max-width: 60rem; }
 .colophon__cols {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
