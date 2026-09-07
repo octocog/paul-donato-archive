@@ -622,3 +622,158 @@ figure.plate q { font-style: italic; }
   .wanted li { grid-template-columns: 1fr; gap: .25rem; }
   .masthead__facts { gap: 0 1.5rem; }
 }
+
+/* ==========================================================================
+   Newsreel frame strip
+   Watermarked Getty comps, shown at comp size, credited, each one a link to
+   the asset page. The watermark stays; the point is to say "this exists and
+   here is where it lives", not to publish the footage.
+   ========================================================================== */
+
+.frames {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: .5rem;
+  padding: 1.1rem 1.35rem;
+  border-bottom: 1px solid rgba(231,232,228,.14);
+}
+
+.frame {
+  position: relative;
+  display: block;
+  border: 0;
+  overflow: hidden;
+  background: #000;
+  line-height: 0;
+}
+.frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: grayscale(1);
+  transition: opacity .25s ease, transform .35s ease;
+}
+.frame:hover img,
+.frame:focus-visible img { opacity: .48; transform: scale(1.02); }
+
+/* the click-through prompt, hidden until hover or keyboard focus */
+.frame__cta {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  text-align: center;
+  padding: .75rem;
+  opacity: 0;
+  transition: opacity .25s ease;
+  font-family: var(--f-data);
+  font-size: .625rem;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--paper);
+  line-height: 1.5;
+}
+.frame:hover .frame__cta,
+.frame:focus-visible .frame__cta { opacity: 1; }
+.frame__cta b {
+  font-size: .8125rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  border-bottom: 1px solid rgba(231,232,228,.55);
+  padding-bottom: .12em;
+}
+.frame__cta span { color: var(--pewter-lt); }
+
+/* always-visible timecode, so the strip reads as film even at rest */
+.frame__t {
+  position: absolute;
+  left: .45rem;
+  bottom: .4rem;
+  font-family: var(--f-data);
+  font-size: .5625rem;
+  letter-spacing: .09em;
+  color: rgba(231,232,228,.75);
+  background: rgba(0,0,0,.55);
+  padding: .12em .38em;
+  line-height: 1.4;
+}
+.frame:hover .frame__t, .frame:focus-visible .frame__t { opacity: 0; }
+
+.frames__note {
+  grid-column: 1 / -1;
+  margin: .35rem 0 0;
+  font-family: var(--f-data);
+  font-size: .625rem;
+  letter-spacing: .04em;
+  line-height: 1.6;
+  color: var(--pewter);
+  text-transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame img { transition: none; }
+  .frame:hover img, .frame:focus-visible img { transform: none; }
+}
+
+/* ==========================================================================
+   Pull quotes
+   Where he or a contemporary is quoted directly, the words come out of the
+   column and are set large.
+   ========================================================================== */
+
+blockquote.pull {
+  position: relative;
+  margin: 2rem 0;
+  padding: 0 0 0 3.25rem;
+  border-left: 0;
+  max-width: 40rem;
+}
+
+blockquote.pull::before {
+  content: "\201C";
+  position: absolute;
+  left: -.15rem;
+  top: -.55rem;
+  font-family: var(--f-body);
+  font-size: 5.5rem;
+  line-height: 1;
+  color: var(--vermilion);
+  opacity: .9;
+}
+
+blockquote.pull p {
+  font-family: var(--f-body);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.1vw, 1.625rem);
+  line-height: 1.34;
+  color: var(--ink);
+  margin: 0 0 .55em;
+  text-wrap: balance;
+}
+blockquote.pull p:last-of-type { margin-bottom: 0; }
+
+blockquote.pull cite {
+  display: block;
+  margin-top: 1rem;
+  padding-top: .7rem;
+  border-top: 1px solid rgba(21,23,26,.22);
+  font-family: var(--f-data);
+  font-style: normal;
+  font-size: .6875rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--pewter);
+  max-width: 24rem;
+}
+
+/* on the dark mount, inside the reel */
+.reel blockquote.pull p { color: var(--paper); }
+.reel blockquote.pull cite { border-top-color: rgba(231,232,228,.25); color: var(--pewter-lt); }
+
+@media (max-width: 46rem) {
+  blockquote.pull { padding-left: 2.35rem; }
+  blockquote.pull::before { font-size: 4rem; top: -.35rem; }
+}
