@@ -1,0 +1,35 @@
+# Daily check that the published archive is actually reachable.
+#
+# This exists because the site has gone dark twice, both times for the same
+# reason: the repository was switched to private, which makes GitHub tear the
+# Pages configuration down. Switching the repository back to public does NOT
+# restore Pages. It has to be switched on again separately.
+#
+# If this job fails, GitHub emails the repository owner. That is the alert.
+name: Archive uptime
+
+on:
+  schedule:
+    - cron: "0 13 * * *"   # 13:00 UTC daily
+  workflow_dispatch:        # lets you run it by hand from the Actions tab
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirm the archive responds
+        run: |
+          URL="https://octocog.github.io/paul-donato-archive/"
+          CODE=$(curl -s -o /tmp/page.html -w '%{http_code}' --max-time 30 "$URL")
+          echo "HTTP $CODE from $URL"
+          if [ "$CODE" != "200" ]; then
+            echo "::error::Archive is DOWN (HTTP $CODE)."
+            echo "::error::Most likely the repo was made private, which destroys Pages."
+            echo "::error::Fix: Settings > General > make public, THEN Settings > Pages > source main / root."
+            exit 1
+          fi
+          if ! grep -qi "Paul A. Donato" /tmp/page.html; then
+            echo "::error::Page returned 200 but does not contain the archive content."
+            exit 1
+          fi
+          echo "Archive is up and serving the expected content."

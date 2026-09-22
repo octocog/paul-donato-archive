@@ -4,7 +4,24 @@ A sourced, growing archive of the running life of **Paul A. Donato** (circa 1915
 to 2004), winner of the 1937 Mount Washington Road Race and first alternate on the 1940
 United States Olympic marathon team. The record is carried to 1970.
 
-Live site: _add the GitHub Pages URL here once Pages is switched on._
+Live site: **https://octocog.github.io/paul-donato-archive/**
+
+> ### Before you make this repository private
+>
+> Do not. Or rather, understand what it costs first.
+>
+> This repository must stay **public** for the archive to be readable. On a free
+> plan a private repository cannot publish GitHub Pages, and switching to private
+> does not simply hide the site, it **deletes the Pages configuration entirely**.
+>
+> Switching the repository back to public afterwards does **not** bring the site
+> back. Pages has to be switched on again as a separate step:
+> **Settings, then Pages, then source `main` and folder `/ (root)`.**
+>
+> That two step recovery is why the archive has gone dark twice and stayed dark
+> for weeks each time. The repository looked fine and public, while Pages had
+> quietly been removed. A daily workflow in `.github/workflows/uptime.yml` now
+> checks the live URL and emails on failure.
 
 ## Ground rules for this repository
 
