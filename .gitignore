@@ -1,0 +1,7 @@
+# Mastering copies live locally only. GitHub rejects files over 100 MB and the
+# published archive serves the transcoded web copy instead.
+images/videos/*.mov
+r.html
+
+# macOS noise
+.DS_Store
