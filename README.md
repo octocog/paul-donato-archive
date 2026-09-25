@@ -4,7 +4,7 @@ A sourced, growing archive of the running life of **Paul A. Donato** (circa 1915
 to 2004), winner of the 1937 Mount Washington Road Race and first alternate on the 1940
 United States Olympic marathon team. The record is carried to 1970.
 
-Live site: **https://octocog.github.io/paul-donato-archive/**
+Live site: **https://pauldonatoarchive.com/**
 
 > ### Before you make this repository private
 >
@@ -22,6 +22,17 @@ Live site: **https://octocog.github.io/paul-donato-archive/**
 > for weeks each time. The repository looked fine and public, while Pages had
 > quietly been removed. A daily workflow in `.github/workflows/uptime.yml` now
 > checks the live URL and emails on failure.
+>
+> ### The custom domain is a third switch
+>
+> `pauldonatoarchive.com` is served through GitHub Pages. That needs **two**
+> things to stay true: the DNS records at the registrar (apex A records to
+> GitHub's four addresses, `www` as a CNAME to `octocog.github.io`), **and**
+> the Custom domain field under Settings, then Pages, which is what makes
+> GitHub recognise the hostname and issue the TLS certificate. Setting only the
+> DNS half produces a site that answers on plain HTTP with a 404 and fails
+> entirely on HTTPS, because the certificate presented is for `*.github.io`.
+> Making the repository private wipes this too, along with the `CNAME` file.
 
 ## Ground rules for this repository
 

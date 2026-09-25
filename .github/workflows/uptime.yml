@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Confirm the archive responds
         run: |
-          URL="https://octocog.github.io/paul-donato-archive/"
+          URL="https://pauldonatoarchive.com/"
           CODE=$(curl -s -o /tmp/page.html -w '%{http_code}' --max-time 30 "$URL")
           echo "HTTP $CODE from $URL"
           if [ "$CODE" != "200" ]; then
